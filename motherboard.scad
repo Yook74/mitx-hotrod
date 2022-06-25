@@ -45,5 +45,7 @@ translate([0, 0, thick]){
         translate([13.6, 38]) cube([19, 19, 31]);
         translate([61-11, 60]) cube([11, 23, 23.5]);
     }
+    
+    color("blue") translate([-7, 24]) cube([10, 29, 9.5]);
 }
 board();
