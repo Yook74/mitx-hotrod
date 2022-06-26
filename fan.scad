@@ -28,7 +28,6 @@ module fan(){
         translate([40, 40]) rotate([0, 0, rotation - 25]) {
             intersection(){
                 cylinder(25, 42, 42);
-                //cube([45, 45, 45]);
                 
                 translate([x, 0, z]) rotate([-90]) difference(){
                     cylinder(45, radius_inner, radius_outer);
