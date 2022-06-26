@@ -1,7 +1,7 @@
 d1 = 170; // length and width of board
 thick = 1.7; // PCB thickness
 
-module board(){
+module motherboard_pca(){
     color("darkgrey") 
     translate([0, 0, -2]) linear_extrude(13) difference(){
         square([d1, d1]);
@@ -29,23 +29,28 @@ module ram(y_pos){
     }
 }
 
-translate([0, 0, thick]){
-    color("white") translate([97, d1 - 12]) cube([62, 12, 30]);
-    color("orangered") translate([70, 44]) cube([55, 60, 17]);
-
-    color("black") ram(110);
-    color("blue") ram(120);
-    color("black") ram(130);
-    color("blue") ram(140);
-
-    color("silver"){
-        translate([0, d1-(19 + 4)]) cube([27, 19, 31]);
-        translate([0, 82]) cube([28, 17, 27]);
-        translate([0, 59]) cube([41, 17, 27]);
-        translate([13.6, 38]) cube([19, 19, 31]);
-        translate([61-11, 60]) cube([11, 23, 23.5]);
-    }
+module motherboard(){
+    motherboard_pca();
     
-    color("blue") translate([-7, 24]) cube([10, 29, 9.5]);
+    translate([0, 0, thick]){
+        color("white") translate([97, d1 - 12]) cube([62, 12, 30]);
+        color("orangered") translate([70, 44]) cube([55, 60, 17]);
+
+        color("black") ram(110);
+        color("blue") ram(120);
+        color("black") ram(130);
+        color("blue") ram(140);
+
+        color("silver"){
+            translate([0, d1-(19 + 4)]) cube([27, 19, 31]);
+            translate([0, 82]) cube([28, 17, 27]);
+            translate([0, 59]) cube([41, 17, 27]);
+            translate([13.6, 38]) cube([19, 19, 31]);
+            translate([61-11, 60]) cube([11, 23, 23.5]);
+        }
+        
+        color("blue") translate([-7, 24]) cube([10, 29, 9.5]);
+    }
 }
-board();
+
+motherboard();
