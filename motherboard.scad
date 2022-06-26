@@ -1,5 +1,12 @@
 d1 = 170; // length and width of board
-thick = 1.7; // PCB thickness
+mobo_pcb_thick = 1.7; // PCB thickness
+mobo_hole_pos = [
+    [0, 0],
+    [155, 0],
+    [22.9, 157.5],
+    [155, 157.5],
+];
+
 
 module motherboard_pca(){
     color("darkgrey") 
@@ -13,12 +20,10 @@ module motherboard_pca(){
     }
     
     color("green") difference(){
-        cube([170, 170, thick]);
+        cube([170, 170, mobo_pcb_thick]);
         
-        translate([10.16, 6.35]) cylinder(thick, 2, 2);
-        translate([22.86 + 10.16, 157.48 + 6.35]) cylinder(thick, 2, 2);
-        translate([10.16 + 154.94, 6.35]) cylinder(thick, 2, 2);
-        translate([10.16 + 154.94, 157.48 + 6.35]) cylinder(thick, 2, 2);
+        for (pos = mobo_hole_pos)
+            translate([10, 6.35] + pos) cylinder(mobo_pcb_thick, r=2);
     }
 }
 
@@ -32,7 +37,7 @@ module ram(y_pos){
 module motherboard(){
     motherboard_pca();
     
-    translate([0, 0, thick]){
+    translate([0, 0, mobo_pcb_thick]){
         color("white") translate([97, d1 - 12]) cube([62, 12, 30]);
         color("orangered") translate([70, 44]) cube([55, 60, 17]);
 
@@ -52,5 +57,3 @@ module motherboard(){
         color("blue") translate([-7, 24]) cube([10, 29, 9.5]);
     }
 }
-
-motherboard();
