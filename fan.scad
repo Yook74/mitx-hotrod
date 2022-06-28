@@ -1,15 +1,16 @@
 $fn = 200;
 
+
+fan_hole_pos = [[0, 0], [0, 70], [70, 0], [70, 0]];
+
 module fan(){
     difference(){
         union(){
             difference(){
                cube([80, 80, 4]);
-               
-               translate([5, 5]) cylinder(4, 2, 2);
-               translate([75, 5]) cylinder(4, 2, 2);
-               translate([5, 75]) cylinder(4, 2, 2);
-               translate([75, 75]) cylinder(4, 2, 2);
+                
+               for (pos=fan_hole_pos) 
+                   translate(pos + [5, 5]) cylinder(4, r=2);
             }
             translate([40, 40]) cylinder(25, 45, 45);
         }
@@ -40,5 +41,3 @@ module fan(){
     for (i=[0:6]) blade(365 * i / 7);
 
 }
-
-fan();
