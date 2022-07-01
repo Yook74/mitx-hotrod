@@ -7,13 +7,13 @@ base_width = 25;
 mount_hole_r = 1.8;
 mount_hole_countersink_r = 3;
 pwr_board_space = 15;
-pwr_board_offset = mobo_hole_pos[1][0] - power_board_hole_pos[1][0];
-ssd_offset = [10, 70];
+pwr_board_offset = 16;
+ssd_offset = [12, 62];
 
 hole_pos = concat(
     mobo_hole_pos, 
-    [for (pos=power_board_hole_pos) pos + [pwr_board_offset, 160 + 15 + pwr_board_space]],
-    [for (pos=ssd_hole_pos) [pos[1] + ssd_offset[0], pos[0] + ssd_offset[1]]]
+    [for (pos=power_board_hole_pos) pos + [pwr_board_offset, 170 + 15 + pwr_board_space] - mobo_hole_offset],
+    [for (i=[2, 3]) [ssd_hole_pos[i][1] + ssd_offset[0], ssd_hole_pos[i][0] + ssd_offset[1]]]
 );
     
 corner_pos = [hole_pos[0], hole_pos[5], hole_pos[1], [0, hole_pos[4][1]]];
@@ -44,11 +44,8 @@ module base_material() {
 }
 
 module base(){
-    translate([10.16, 5.35]) difference(){
+    translate([10, 6.35]) difference(){
         base_material();
         holes();
     }
 }
-
-echo(hole_pos[4][1] - hole_pos[2][1]);
-base();

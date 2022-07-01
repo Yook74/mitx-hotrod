@@ -3,6 +3,8 @@ power_board_hole_pos =  [
     [149, 0]
 ];
 
+power_board_hole_offset = [4.6, 15];
+
 module power_board(){   
    module board(){
         translate([0, 0, -2]) linear_extrude(28.5) difference(){
@@ -22,7 +24,7 @@ module power_board(){
         translate([147.8, 29.5 / 2 - 8.5 / 2, 1.5]) cube([8.5, 8.5, 30]);
         translate([0, 29.5 / 2 - 8.5 / 2, 1.5]) cube([8.5, 8.5, 30]);
         
-        translate(power_board_hole_pos[0] + [4.6, 15]) cylinder(1.5, 1.5, 1.5);
-        translate(power_board_hole_pos[1] + [4.6, 15]) cylinder(1.5, 1.5, 1.5);
+        for (pos=power_board_hole_pos) 
+            translate(pos + power_board_hole_offset) cylinder(1.5, 1.5, 1.5);
     }
 }

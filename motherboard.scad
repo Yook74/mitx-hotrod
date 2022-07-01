@@ -6,6 +6,7 @@ mobo_hole_pos = [
     [22.9, 157.5],
     [155, 157.5],
 ];
+mobo_hole_offset = [10, 6.35];
 
 
 module motherboard_pca(){
@@ -23,7 +24,7 @@ module motherboard_pca(){
         cube([170, 170, mobo_pcb_thick]);
         
         for (pos = mobo_hole_pos)
-            translate([10, 6.35] + pos) cylinder(mobo_pcb_thick, r=2);
+            translate(mobo_hole_offset + pos) cylinder(mobo_pcb_thick, r=2);
     }
 }
 
